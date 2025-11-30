@@ -30,75 +30,6 @@ cp .env.example .env
 chmod +x insight_generator.py
 ```
 
-## Environment Configuration
-
-The tool supports configuration through environment variables via a `.env` file:
-
-- `AIOPS_BASE_URL`: Base URL for the AI-Ops platform (default: `http://localhost:4047`)
-- `AIOPS_TOKEN`: Bearer token for authentication (optional)
-- `AIOPS_DEVICE_COUNT`: Number of devices to generate in inventory (default: `50`)
-- `AIOPS_DEVICE_SELECTION`: Device selection strategy - `random` or `sequential` (default: `random`)
-
-Example `.env` file:
-```
-AIOPS_BASE_URL=https://your-aiops-platform.com
-AIOPS_TOKEN=your_bearer_token_here
-AIOPS_DEVICE_COUNT=100
-AIOPS_DEVICE_SELECTION=sequential
-```
-
-## Directory Structure
-
-The tool expects the following directory structure:
-```
-.
-├── insight_generator.py         # Main CLI script
-├── src/                        # Source code package
-│   ├── __init__.py
-│   ├── generator/              # Insight generation logic
-│   │   ├── __init__.py
-│   │   └── generator.py
-│   ├── client/                 # API client
-│   │   ├── __init__.py
-│   │   └── client.py
-│   └── inventory/              # Device inventory management
-│       ├── __init__.py
-│       └── device_inventory.py
-├── config.json                 # Configuration file
-├── .env.example                # Environment configuration template
-├── requirements.txt            # Python dependencies
-├── forecast/                   # Folder containing forecast insight templates
-│   ├── insight_001.json
-│   ├── insight_002.json
-│   └── insight_003.json
-├── current/                    # Folder containing current insight templates
-│   ├── insight_001.json
-│   └── insight_002.json
-└── past/                       # Folder containing past insight templates
-    ├── insight_001.json
-    └── insight_002.json
-```
-
-## Configuration Format
-
-The configuration file should follow this JSON structure:
-
-```json
-{
-  "forecast_insight": {
-    "next_0_to_7": 2,     # Number of insights for next 0-7 days
-    "next_7_to_30": 5,    # Number of insights for next 7-30 days
-    "next_30_to_90": 3    # Number of insights for next 30-90 days
-  },
-  "present": 4,           # Number of current active insights
-  "past": {
-    "last_0_to_12": 1,    # Number of insights resolved in last 0-12 hours
-    "last_12_to_24": 3,   # Number of insights resolved in last 12-24 hours
-    "last_24_to_48": 2    # Number of insights resolved in last 24-48 hours
-  }
-}
-```
-
 ## Usage
 
 ### Basic usage with default endpoint:
@@ -127,6 +58,43 @@ python insight_generator.py config.json --dry-run
 ### Help:
 ```bash
 python insight_generator.py --help
+```
+
+## Configuration Format
+
+The configuration file should follow this JSON structure:
+
+```json
+{
+  "forecast_insight": {
+    "next_0_to_7": 2,     # Number of insights for next 0-7 days
+    "next_7_to_30": 5,    # Number of insights for next 7-30 days
+    "next_30_to_90": 3    # Number of insights for next 30-90 days
+  },
+  "present": 4,           # Number of current active insights
+  "past": {
+    "last_0_to_12": 1,    # Number of insights resolved in last 0-12 hours
+    "last_12_to_24": 3,   # Number of insights resolved in last 12-24 hours
+    "last_24_to_48": 2    # Number of insights resolved in last 24-48 hours
+  }
+}
+```
+
+## Environment Configuration
+
+The tool supports configuration through environment variables via a `.env` file:
+
+- `AIOPS_BASE_URL`: Base URL for the AI-Ops platform (default: `http://localhost:4047`)
+- `AIOPS_TOKEN`: Bearer token for authentication (optional)
+- `AIOPS_DEVICE_COUNT`: Number of devices to generate in inventory (default: `50`)
+- `AIOPS_DEVICE_SELECTION`: Device selection strategy - `random` or `sequential` (default: `random`)
+
+Example `.env` file:
+```
+AIOPS_BASE_URL=https://your-aiops-platform.com
+AIOPS_TOKEN=your_bearer_token_here
+AIOPS_DEVICE_COUNT=100
+AIOPS_DEVICE_SELECTION=sequential
 ```
 
 ## How It Works
