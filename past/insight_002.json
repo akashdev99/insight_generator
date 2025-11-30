@@ -1,0 +1,311 @@
+{
+    "uid": "12d0ed23-95ef-5336-825f-d4c9ccd0ecf9",
+    "severity": "WARNING",
+    "category": "HEALTH",
+    "impactedResources": [
+        {
+            "uid": "7e498ae4-3373-4229-9b8d-d6fd4724c6c8",
+            "name": "dummy_device_3",
+            "type": "FTD"
+        }
+    ],
+    "title": "High Snort CPU Usage",
+    "summary": "Snort CPU utilization has reached 86%, surpassing the defined threshold.",
+    "createdTime": "2025-11-02T09:12:36.993+00:00",
+    "updatedTime": "2025-11-23T09:12:36.993+00:00",
+    "data": {
+        "@type": "CorrelationInsightData",
+        "breachDate": "2025-11-25T15:12:10.000+00:00",
+        "baseMetric": {
+            "metricName": "Snort CPU",
+            "timeSeries": [
+                {
+                    "timestamp": 1762096011000,
+                    "value": 19.0
+                },
+                {
+                    "timestamp": 1762096017000,
+                    "value": 24.0
+                },
+                {
+                    "timestamp": 1762096023000,
+                    "value": 19.5
+                },
+                {
+                    "timestamp": 1762096029000,
+                    "value": 36.0
+                },
+                {
+                    "timestamp": 1762096035000,
+                    "value": 21.0
+                },
+                {
+                    "timestamp": 1762096041000,
+                    "value": 19.0
+                },
+                {
+                    "timestamp": 1762096047000,
+                    "value": 15.5
+                },
+                {
+                    "timestamp": 1762096053000,
+                    "value": 18.5
+                },
+                {
+                    "timestamp": 1762096059000,
+                    "value": 31.0
+                },
+                {
+                    "timestamp": 1762096065000,
+                    "value": 17.5
+                },
+                {
+                    "timestamp": 1762096071000,
+                    "value": 16.5
+                },
+                {
+                    "timestamp": 1762096077000,
+                    "value": 11.5
+                },
+                {
+                    "timestamp": 1762096083000,
+                    "value": 17.5
+                },
+                {
+                    "timestamp": 1762096089000,
+                    "value": 28.5
+                },
+                {
+                    "timestamp": 1762096095000,
+                    "value": 21.5
+                },
+                {
+                    "timestamp": 1762096101000,
+                    "value": 10.5
+                },
+                {
+                    "timestamp": 1762096107000,
+                    "value": 21.5
+                },
+                {
+                    "timestamp": 1762096113000,
+                    "value": 10.0
+                },
+                {
+                    "timestamp": 1762096119000,
+                    "value": 22.0
+                },
+                {
+                    "timestamp": 1762096125000,
+                    "value": 24.5
+                },
+                {
+                    "timestamp": 1762096131000,
+                    "value": 13.5
+                },
+                {
+                    "timestamp": 1762096137000,
+                    "value": 20.0
+                },
+                {
+                    "timestamp": 1762096143000,
+                    "value": 12.0
+                },
+                {
+                    "timestamp": 1762096149000,
+                    "value": 24.0
+                },
+                {
+                    "timestamp": 1762096155000,
+                    "value": 20.5
+                },
+                {
+                    "timestamp": 1762096161000,
+                    "value": 16.5
+                },
+                {
+                    "timestamp": 1762096167000,
+                    "value": 16.0
+                },
+                {
+                    "timestamp": 1762096173000,
+                    "value": 15.5
+                },
+                {
+                    "timestamp": 1762096179000,
+                    "value": 27.0
+                },
+                {
+                    "timestamp": 1762096185000,
+                    "value": 18.5
+                },
+                {
+                    "timestamp": 1762096191000,
+                    "value": 19.0
+                },
+                {
+                    "timestamp": 1762096197000,
+                    "value": 29.0
+                },
+                {
+                    "timestamp": 1762096203000,
+                    "value": 14.5
+                },
+                {
+                    "timestamp": 1762096209000,
+                    "value": 14.5
+                },
+                {
+                    "timestamp": 1762096215000,
+                    "value": 38.5
+                },
+                {
+                    "timestamp": 1762096221000,
+                    "value": 18.0
+                },
+                {
+                    "timestamp": 1762096227000,
+                    "value": 17.5
+                },
+                {
+                    "timestamp": 1762096233000,
+                    "value": 18.0
+                },
+                {
+                    "timestamp": 1762096239000,
+                    "value": 11.0
+                },
+                {
+                    "timestamp": 1762096245000,
+                    "value": 29.5
+                },
+                {
+                    "timestamp": 1762096251000,
+                    "value": 15.5
+                },
+                {
+                    "timestamp": 1762096257000,
+                    "value": 16.0
+                },
+                {
+                    "timestamp": 1762096263000,
+                    "value": 19.5
+                },
+                {
+                    "timestamp": 1762096269000,
+                    "value": 14.0
+                },
+                {
+                    "timestamp": 1762096275000,
+                    "value": 28.5
+                },
+                {
+                    "timestamp": 1762096281000,
+                    "value": 16.5
+                },
+                {
+                    "timestamp": 1762096287000,
+                    "value": 21.5
+                },
+                {
+                    "timestamp": 1762096293000,
+                    "value": 15.0
+                },
+                {
+                    "timestamp": 1762096299000,
+                    "value": 22.5
+                },
+                {
+                    "timestamp": 1762096305000,
+                    "value": 31.0
+                },
+                {
+                    "timestamp": 1762096311000,
+                    "value": 16.0
+                },
+                {
+                    "timestamp": 1762096317000,
+                    "value": 9.5
+                },
+                {
+                    "timestamp": 1762096323000,
+                    "value": 23.0
+                },
+                {
+                    "timestamp": 1762096329000,
+                    "value": 74.5
+                },
+                {
+                    "timestamp": 1762096335000,
+                    "value": 96.5
+                },
+                {
+                    "timestamp": 1762096341000,
+                    "value": 95.5
+                },
+                {
+                    "timestamp": 1762096347000,
+                    "value": 82.0
+                },
+                {
+                    "timestamp": 1762096353000,
+                    "value": 41.0
+                },
+                {
+                    "timestamp": 1762096359000,
+                    "value": 29.0
+                },
+                {
+                    "timestamp": 1762096365000,
+                    "value": 86.0
+                },
+                {
+                    "timestamp": 1762096371000,
+                    "value": 86.0
+                },
+                {
+                    "timestamp": 1762096377000,
+                    "value": 30.0
+                },
+                {
+                    "timestamp": 1762096383000,
+                    "value": 18.5
+                },
+                {
+                    "timestamp": 1762096389000,
+                    "value": 19.5
+                },
+                {
+                    "timestamp": 1762096395000,
+                    "value": 44.0
+                }
+            ]
+        },
+        "correlationStartDate": "2025-08-19T08:12:36.993+00:00",
+        "correlationEndDate": "2025-08-19T09:12:36.993+00:00",
+        "correlationMetrics": [],
+        "correlationResult": {
+            "status": "SUCCESS",
+            "details": null
+        },
+        "threshold": 80.0
+    },
+    "analysis": {
+        "detail": "Snort CPU utilization has reached 86%, surpassing the defined threshold. High Snort CPU usage can significantly impact network performance that can lead to packet drops, increased latency and reduced throughput.",
+        "probableCauses": [
+            {
+                "title": "No clear probable cause found",
+                "detail": "High CPU usage can be caused by factors such as complex IPS signatures, AMP processes, VPN tunnels, flow monitoring, configuration changes, hardware limitations, and network traffic patterns. By understanding these common causes, you can effectively troubleshoot and address the issue.",
+                "confidence": "NONE"
+            }
+        ],
+        "remediation": [
+            {
+                "title": "",
+                "markdownText": "To reduce Snort's high CPU consumption on Cisco FTD firewalls, it's essential to optimize Snort's configuration and settings. This includes disabling unnecessary signatures, adjusting inspection depth, and configuring performance tuning options. Additionally, optimizing network traffic and enabling hardware offloading can significantly improve Snort's efficiency. By carefully monitoring and analyzing Snort's performance, you can identify and address specific issues that contribute to high CPU usage."
+            }
+        ]
+    },
+    "type": "CPU_SNORT_THRESHOLD_BREACH",
+    "state": "RESOLVED"
+}
