@@ -22,8 +22,8 @@ class InsightGenerator:
         self.config_file = config_file
         self.client = AIOpsClient(endpoint, token, dry_run)
         
-        # Initialize device inventory (device count from env variable)
-        self.device_inventory = DeviceInventory()
+        # Initialize device inventory with same endpoint and token
+        self.device_inventory = DeviceInventory(endpoint, token)
         
         # Round-robin counters for each insight type
         self.forecast_counter = 0
@@ -279,6 +279,7 @@ class InsightGenerator:
             print(f"Using Bearer token: {self.client.get_token_preview()}")
         else:
             print("No authentication token provided")
+        print(self.device_inventory)
         print(f"Device inventory: {self.device_inventory.get_device_count()} devices loaded")
         print("=" * 50)
         

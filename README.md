@@ -84,29 +84,31 @@ The configuration file should follow this JSON structure:
 
 The tool supports configuration through environment variables via a `.env` file:
 
-- `AIOPS_BASE_URL`: Base URL for the AI-Ops platform (default: `http://localhost:4047`)
+- `AIOPS_DOMAIN`: Base URL for the AI-Ops platform (default: `http://localhost:4047`)
+- `AEGIS_DOMAIN`: Base URL for Aegis API calls (optional, falls back to `AIOPS_DOMAIN`)
 - `AIOPS_TOKEN`: Bearer token for authentication (optional)
-- `AIOPS_DEVICE_COUNT`: Number of devices to generate in inventory (default: `50`)
 - `AIOPS_DEVICE_SELECTION`: Device selection strategy - `random` or `sequential` (default: `random`)
 
 Example `.env` file:
 ```
-AIOPS_BASE_URL=https://your-aiops-platform.com
+AIOPS_DOMAIN=https://your-aiops-platform.com
+AEGIS_DOMAIN=https://your-aegis-api.com
 AIOPS_TOKEN=your_bearer_token_here
-AIOPS_DEVICE_COUNT=100
 AIOPS_DEVICE_SELECTION=sequential
 ```
 
 ## How It Works
 
 1. **Device Inventory**:
-   - Generates virtual devices with random names and UIDs
-   - Device count configurable via `AIOPS_DEVICE_COUNT` environment variable (default: 50)
+   - Fetches real devices from API endpoint: `/aegis/rest/v1/services/targets/devices`
+   - Uses query parameter `q=deviceType:FTDC` to filter for FTD devices
+   - Extracts device `uid` and `name` from API response
    - Device selection strategy configurable via `AIOPS_DEVICE_SELECTION`:
      - `random`: Devices are picked randomly from inventory (default)
      - `sequential`: Devices are picked sequentially in round-robin fashion
-   - All devices are of type "FTD" 
+   - All devices are treated as type "FTD" 
    - Devices are assigned to insights when posting based on selection strategy
+   - Falls back to a default device if API call fails
 
 2. **Round-Robin Selection**:
    - Insights are selected from templates in round-robin fashion instead of random
