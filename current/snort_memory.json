@@ -14,7 +14,7 @@
         }
     ],
     "title": "High Snort Memory Usage",
-    "summary": "snort memory utilization has reached 87%, surpassing the defined threshold.",
+    "summary": "snort memory utilization has reached <random_number>%, surpassing the defined threshold.",
     "createdTime": "2025-11-28T19:52:39.000+00:00",
     "updatedTime": "2025-11-28T20:06:39.955+00:00",
     "data": {

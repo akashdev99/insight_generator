@@ -88,6 +88,7 @@ The tool supports configuration through environment variables via a `.env` file:
 - `AEGIS_DOMAIN`: Base URL for Aegis API calls (optional, falls back to `AIOPS_DOMAIN`)
 - `AIOPS_TOKEN`: Bearer token for authentication (optional)
 - `AIOPS_DEVICE_SELECTION`: Device selection strategy - `random` or `sequential` (default: `random`)
+- `INSIGHT_PICKER`: Insight selection strategy - `sequential` or `random` (default: `sequential`)
 
 Example `.env` file:
 ```
@@ -95,6 +96,7 @@ AIOPS_DOMAIN=https://your-aiops-platform.com
 AEGIS_DOMAIN=https://your-aegis-api.com
 AIOPS_TOKEN=your_bearer_token_here
 AIOPS_DEVICE_SELECTION=sequential
+INSIGHT_PICKER=random
 ```
 
 ## How It Works

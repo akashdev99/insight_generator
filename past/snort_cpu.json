@@ -10,7 +10,7 @@
         }
     ],
     "title": "High Snort CPU Usage",
-    "summary": "Snort CPU utilization has reached 86%, surpassing the defined threshold.",
+    "summary": "Snort CPU utilization has reached <random_number>%, surpassing the defined threshold.",
     "createdTime": "2025-11-02T09:12:36.993+00:00",
     "updatedTime": "2025-11-23T09:12:36.993+00:00",
     "data": {

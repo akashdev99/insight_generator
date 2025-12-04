@@ -13,22 +13,30 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any
 from pathlib import Path
+from dotenv import load_dotenv
 from ..client import AIOpsClient
 from ..inventory import DeviceInventory
 
 
 class InsightGenerator:
     def __init__(self, config_file: str, endpoint: str = None, token: str = None, dry_run: bool = False):
+        # Load environment variables
+        load_dotenv()
+        
         self.config_file = config_file
         self.client = AIOpsClient(endpoint, token, dry_run)
         
         # Initialize device inventory with same endpoint and token
         self.device_inventory = DeviceInventory(endpoint, token)
         
-        # Round-robin counters for each insight type
+        # Insight picker strategy (sequential or random)
+        self.insight_picker_mode = os.getenv('INSIGHT_PICKER', 'sequential').lower()
+        
+        # Round-robin counters for each insight type (used only in sequential mode)
         self.forecast_counter = 0
         self.current_counter = 0
         self.past_counter = 0
+        self.non_capacity_counter = 0
         
         # Available severity levels
         self.severity_levels = ["CRITICAL", "WARNING", "INFORMATIONAL"]
@@ -37,6 +45,7 @@ class InsightGenerator:
         self.forecast_dir = self.base_dir / "forecast"
         self.current_dir = self.base_dir / "current"
         self.past_dir = self.base_dir / "past"
+        self.non_capacity_dir = self.base_dir / "non_capacity_insight"
         
     def load_config(self) -> Dict:
         """Load the forecast configuration JSON file."""
@@ -67,18 +76,29 @@ class InsightGenerator:
                 
         return insights
     
-    def get_round_robin_insight(self, insights: List[Dict], counter_attr: str) -> Dict:
-        """Get insight in round-robin fashion using the specified counter."""
+    def get_insight(self, insights: List[Dict], counter_attr: str) -> Dict:
+        """Get insight based on configured strategy (sequential or random)."""
         if not insights:
             return None
             
+        if self.insight_picker_mode == 'random':
+            return self.get_random_insight(insights)
+        else:
+            return self.get_sequential_insight(insights, counter_attr)
+    
+    def get_sequential_insight(self, insights: List[Dict], counter_attr: str) -> Dict:
+        """Get insight in round-robin fashion using the specified counter."""
         counter = getattr(self, counter_attr)
         insight = insights[counter % len(insights)].copy()
         setattr(self, counter_attr, counter + 1)
         return insight
     
+    def get_random_insight(self, insights: List[Dict]) -> Dict:
+        """Get a random insight from the list."""
+        return random.choice(insights).copy()
+    
     def modify_insight_properties(self, insight: Dict) -> Dict:
-        """Modify insight properties: UID, severity, and impacted device."""
+        """Modify insight properties: UID, severity, impacted device, and summary random numbers."""
         # Generate new UID
         insight["uid"] = str(uuid.uuid4())
         
@@ -90,7 +110,31 @@ class InsightGenerator:
             new_device = self.device_inventory.get_device()
             insight["impactedResources"] = [new_device]
         
+        # Replace random number placeholders in summary
+        insight = self.modify_summary_random_numbers(insight)
+        
         return insight
+    
+    def modify_summary_random_numbers(self, insight: Dict) -> Dict:
+        """Replace <random_number> placeholders in summary field with random numbers between 1 and 1000."""
+        if "summary" in insight and isinstance(insight["summary"], str):
+            # Replace all occurrences of <random_number> with a random number between 1 and 1000
+            while "<random_number>" in insight["summary"]:
+                random_num = random.randint(1, 1000)
+                insight["summary"] = insight["summary"].replace("<random_number>", str(random_num), 1)
+        
+        return insight
+    
+    def modify_uid_only(self, insight: Dict) -> Dict:
+        """Modify only the UID and summary random numbers of the insight, keeping other properties unchanged."""
+        insight_copy = insight.copy()
+        # Generate new UID
+        insight_copy["uid"] = str(uuid.uuid4())
+        
+        # Replace random number placeholders in summary
+        insight_copy = self.modify_summary_random_numbers(insight_copy)
+        
+        return insight_copy
     
     def modify_breach_date_range(self, insight: Dict, min_days: int, max_days: int) -> Dict:
         """Modify the breach date to be within the specified range."""
@@ -194,7 +238,7 @@ class InsightGenerator:
         # Next 0-7 hours (minimum 3 hours from now)
         next_0_to_7_count = forecast_config.get("next_0_to_7", 0)
         for _ in range(next_0_to_7_count):
-            insight = self.get_round_robin_insight(forecast_insights, 'forecast_counter')
+            insight = self.get_insight(forecast_insights, 'forecast_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 modified_insight = self.modify_breach_date_hours_with_minimum(insight, 3, 7, 3)
@@ -203,7 +247,7 @@ class InsightGenerator:
         # Next 7-30 days
         next_7_to_30_count = forecast_config.get("next_7_to_30", 0)
         for _ in range(next_7_to_30_count):
-            insight = self.get_round_robin_insight(forecast_insights, 'forecast_counter')
+            insight = self.get_insight(forecast_insights, 'forecast_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 modified_insight = self.modify_breach_date_range(insight, 7, 30)
@@ -212,7 +256,7 @@ class InsightGenerator:
         # Next 30-90 days
         next_30_to_90_count = forecast_config.get("next_30_to_90", 0)
         for _ in range(next_30_to_90_count):
-            insight = self.get_round_robin_insight(forecast_insights, 'forecast_counter')
+            insight = self.get_insight(forecast_insights, 'forecast_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 modified_insight = self.modify_breach_date_range(insight, 30, 90)
@@ -228,7 +272,7 @@ class InsightGenerator:
             return
         
         for _ in range(current_count):
-            insight = self.get_round_robin_insight(current_insights, 'current_counter')
+            insight = self.get_insight(current_insights, 'current_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 self.client.post_insight(insight, "CURRENT: Active insights")
@@ -245,7 +289,7 @@ class InsightGenerator:
         # Last 0-12 hours
         last_0_to_12_count = past_config.get("last_0_to_12", 0)
         for _ in range(last_0_to_12_count):
-            insight = self.get_round_robin_insight(past_insights, 'past_counter')
+            insight = self.get_insight(past_insights, 'past_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 modified_insight = self.modify_updated_time_range(insight, 0, 12)
@@ -254,7 +298,7 @@ class InsightGenerator:
         # Last 12-24 hours
         last_12_to_24_count = past_config.get("last_12_to_24", 0)
         for _ in range(last_12_to_24_count):
-            insight = self.get_round_robin_insight(past_insights, 'past_counter')
+            insight = self.get_insight(past_insights, 'past_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 modified_insight = self.modify_updated_time_range(insight, 12, 24)
@@ -263,11 +307,26 @@ class InsightGenerator:
         # Last 24-48 hours
         last_24_to_48_count = past_config.get("last_24_to_48", 0)
         for _ in range(last_24_to_48_count):
-            insight = self.get_round_robin_insight(past_insights, 'past_counter')
+            insight = self.get_insight(past_insights, 'past_counter')
             if insight:
                 insight = self.modify_insight_properties(insight)
                 modified_insight = self.modify_updated_time_range(insight, 24, 48)
                 self.client.post_insight(modified_insight, "PAST: Last 24-48 hours")
+    
+    def generate_non_capacity_insights(self, config: Dict):
+        """Generate and post non-capacity insights."""
+        non_capacity_count = config.get("non_capacity_insight", 0)
+        non_capacity_insights = self.load_insights_from_folder(self.non_capacity_dir)
+        
+        if not non_capacity_insights:
+            print("Warning: No non-capacity insights found in non_capacity_insight folder.")
+            return
+        
+        for _ in range(non_capacity_count):
+            insight = self.get_insight(non_capacity_insights, 'non_capacity_counter')
+            if insight:
+                modified_insight = self.modify_uid_only(insight)
+                self.client.post_insight(modified_insight, "NON-CAPACITY: Current insights")
     
     def run(self):
         """Main execution method."""
@@ -294,6 +353,10 @@ class InsightGenerator:
         # Generate past insights
         print("\nGenerating past insights...")
         self.generate_past_insights(config)
+        
+        # Generate non-capacity insights
+        print("\nGenerating non-capacity insights...")
+        self.generate_non_capacity_insights(config)
         
         print("\n" + "=" * 50)
         print("Insight generation completed!")

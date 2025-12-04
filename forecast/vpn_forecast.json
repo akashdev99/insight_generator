@@ -10,7 +10,7 @@
         }
     ],
     "title": "RAVPN Forecast - Maximum Sessions Nearing Limit",
-    "summary": "AIOps has forecasted that the number of RAVPN sessions will reach capacity in 4 days.",
+    "summary": "AIOps has forecasted that the number of RAVPN sessions will reach capacity in <random_number> days.",
     "createdTime": "2025-11-03T03:30:00.996+00:00",
     "updatedTime": "2025-11-03T03:30:00.996+00:00",
     "data": {

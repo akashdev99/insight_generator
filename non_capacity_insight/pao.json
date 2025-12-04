@@ -1,0 +1,19 @@
+{
+    "uid": "df329a53-5f27-4aac-b54f-27880fa619b7",
+    "severity": "WARNING",
+    "category": "CONFIGURATION",
+    "impactedResources": [
+        {
+            "uid": "06e2df28-d51d-0ed3-0000-030064882499",
+            "name": "bulkrules",
+            "type": "AC_POLICY"
+        }
+    ],
+    "title": "Access Control Policy Anomalies",
+    "summary": "AIOps has detected 5500 anomalies in Access Control policy 'bulkrules'.",
+    "detailUrl": "rule-heartbeat/06E2DF28-D51D-0ed3-0000-030064882499/summary/53399d83-6927-48ee-b5ce-27598e0cc651",
+    "createdTime": "2025-11-20T01:43:15.107+00:00",
+    "updatedTime": "2025-11-20T01:43:15.107+00:00",
+    "type": "AC_POLICY_ANALYZER_AND_OPTIMIZER",
+    "state": "ACTIVE"
+}

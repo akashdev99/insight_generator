@@ -10,7 +10,7 @@
         }
     ],
     "title": "Connections Rate (CPS) Anomaly",
-    "summary": "AIOPS has detected anomalous patterns in firewall connections",
+    "summary": "AIOPS has detected anomalous patterns in firewall connections <random_number>",
     "createdTime": "2025-11-03T03:01:45.551+00:00",
     "updatedTime": "2025-11-03T03:06:45.551+00:00",
     "data": {
