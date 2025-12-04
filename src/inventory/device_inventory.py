@@ -46,7 +46,9 @@ class DeviceInventory:
             
             # Set up query parameters
             params = {
-                'q': 'deviceType:FTDC'
+                'q': 'deviceType:FTDC',
+                'limit':"1",
+                "offset": "20"
             }
             
             print(f"Fetching devices from: {api_url}")

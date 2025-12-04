@@ -29,6 +29,7 @@ class InsightGenerator:
         self.forecast_counter = 0
         self.current_counter = 0
         self.past_counter = 0
+        self.non_capacity_counter = 0
         
         # Available severity levels
         self.severity_levels = ["CRITICAL", "WARNING", "INFORMATIONAL"]
@@ -37,6 +38,7 @@ class InsightGenerator:
         self.forecast_dir = self.base_dir / "forecast"
         self.current_dir = self.base_dir / "current"
         self.past_dir = self.base_dir / "past"
+        self.non_capacity_dir = self.base_dir / "non_capacity_insight"
         
     def load_config(self) -> Dict:
         """Load the forecast configuration JSON file."""
@@ -92,6 +94,13 @@ class InsightGenerator:
         
         return insight
     
+    def modify_uid_only(self, insight: Dict) -> Dict:
+        """Modify only the UID of the insight, keeping all other properties unchanged."""
+        insight_copy = insight.copy()
+        # Generate new UID
+        insight_copy["uid"] = str(uuid.uuid4())
+        return insight_copy
+    
     def modify_breach_date_range(self, insight: Dict, min_days: int, max_days: int) -> Dict:
         """Modify the breach date to be within the specified range."""
         insight_copy = insight.copy()
@@ -127,7 +136,7 @@ class InsightGenerator:
         
         # Update breach date in ISO format with milliseconds
         breach_date_str = new_breach_date.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "+00:00"
-        insight_copy["breachDate"] = breach_date_str
+        # insight_copy["breachDate"] = breach_date_str
         
         # Also update data.breachDate if it exists
         if "data" in insight_copy and "breachDate" in insight_copy["data"]:
@@ -145,7 +154,7 @@ class InsightGenerator:
         
         # Update breach date in ISO format with milliseconds
         breach_date_str = new_breach_date.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "+00:00"
-        insight_copy["breachDate"] = breach_date_str
+        # insight_copy["breachDate"] = breach_date_str
         
         # Also update data.breachDate if it exists
         if "data" in insight_copy and "breachDate" in insight_copy["data"]:
@@ -269,6 +278,21 @@ class InsightGenerator:
                 modified_insight = self.modify_updated_time_range(insight, 24, 48)
                 self.client.post_insight(modified_insight, "PAST: Last 24-48 hours")
     
+    def generate_non_capacity_insights(self, config: Dict):
+        """Generate and post non-capacity insights."""
+        non_capacity_count = config.get("non_capacity_insight", 0)
+        non_capacity_insights = self.load_insights_from_folder(self.non_capacity_dir)
+        
+        if not non_capacity_insights:
+            print("Warning: No non-capacity insights found in non_capacity_insight folder.")
+            return
+        
+        for _ in range(non_capacity_count):
+            insight = self.get_round_robin_insight(non_capacity_insights, 'non_capacity_counter')
+            if insight:
+                modified_insight = self.modify_uid_only(insight)
+                self.client.post_insight(modified_insight, "NON-CAPACITY: Current insights")
+    
     def run(self):
         """Main execution method."""
         print(f"Loading configuration from: {self.config_file}")
@@ -294,6 +318,10 @@ class InsightGenerator:
         # Generate past insights
         print("\nGenerating past insights...")
         self.generate_past_insights(config)
+        
+        # Generate non-capacity insights
+        print("\nGenerating non-capacity insights...")
+        self.generate_non_capacity_insights(config)
         
         print("\n" + "=" * 50)
         print("Insight generation completed!")
