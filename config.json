@@ -1,13 +1,14 @@
 {
   "forecast_insight": {
-    "next_0_to_7": 2,
+    "next_0_to_7": 0,
     "next_7_to_30":0,
     "next_30_to_90": 0
   },
-  "present": 2,
+  "present": 3,
   "past": {
-    "last_0_to_12": 2,
+    "last_0_to_12": 0,
     "last_12_to_24": 0,
     "last_24_to_48": 0
-  }
+  },
+  "non_capacity_insight": 0
 }

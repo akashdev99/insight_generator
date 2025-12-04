@@ -29,6 +29,9 @@ class InsightGenerator:
         # Initialize device inventory with same endpoint and token
         self.device_inventory = DeviceInventory(endpoint, token)
         
+        # Generation mode (device or insight)
+        self.generation_mode = os.getenv('GENERATION_MODE', 'insight').lower()
+        
         # Insight picker strategy (sequential or random)
         self.insight_picker_mode = os.getenv('INSIGHT_PICKER', 'sequential').lower()
         
@@ -328,6 +331,150 @@ class InsightGenerator:
                 modified_insight = self.modify_uid_only(insight)
                 self.client.post_insight(modified_insight, "NON-CAPACITY: Current insights")
     
+    def generate_insights_for_device(self, config: Dict, device: Dict):
+        """Generate all configured insights for a specific device."""
+        print(f"Generating insights for device: {device['name']} ({device['uid']})")
+        
+        # Load all insight templates
+        forecast_insights = self.load_insights_from_folder(self.forecast_dir)
+        current_insights = self.load_insights_from_folder(self.current_dir)
+        past_insights = self.load_insights_from_folder(self.past_dir)
+        non_capacity_insights = self.load_insights_from_folder(self.non_capacity_dir)
+        
+        # Generate forecast insights for this device
+        forecast_config = config.get("forecast_insight", {})
+        
+        # Next 0-7 hours
+        next_0_to_7_count = forecast_config.get("next_0_to_7", 0)
+        for _ in range(next_0_to_7_count):
+            if forecast_insights:
+                insight = self.get_insight(forecast_insights, 'forecast_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    modified_insight = self.modify_breach_date_hours_with_minimum(insight, 3, 7, 3)
+                    self.client.post_insight(modified_insight, f"FORECAST: Next 0-7 hours - {device['name']}")
+        
+        # Next 7-30 days
+        next_7_to_30_count = forecast_config.get("next_7_to_30", 0)
+        for _ in range(next_7_to_30_count):
+            if forecast_insights:
+                insight = self.get_insight(forecast_insights, 'forecast_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    modified_insight = self.modify_breach_date_range(insight, 7, 30)
+                    self.client.post_insight(modified_insight, f"FORECAST: Next 7-30 days - {device['name']}")
+        
+        # Next 30-90 days
+        next_30_to_90_count = forecast_config.get("next_30_to_90", 0)
+        for _ in range(next_30_to_90_count):
+            if forecast_insights:
+                insight = self.get_insight(forecast_insights, 'forecast_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    modified_insight = self.modify_breach_date_range(insight, 30, 90)
+                    self.client.post_insight(modified_insight, f"FORECAST: Next 30-90 days - {device['name']}")
+        
+        # Current insights
+        current_count = config.get("present", 0)
+        for _ in range(current_count):
+            if current_insights:
+                insight = self.get_insight(current_insights, 'current_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    self.client.post_insight(insight, f"CURRENT: Active insights - {device['name']}")
+        
+        # Past insights
+        past_config = config.get("past", {})
+        
+        # Last 0-12 hours
+        last_0_to_12_count = past_config.get("last_0_to_12", 0)
+        for _ in range(last_0_to_12_count):
+            if past_insights:
+                insight = self.get_insight(past_insights, 'past_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    modified_insight = self.modify_updated_time_range(insight, 0, 12)
+                    self.client.post_insight(modified_insight, f"PAST: Last 0-12 hours - {device['name']}")
+        
+        # Last 12-24 hours
+        last_12_to_24_count = past_config.get("last_12_to_24", 0)
+        for _ in range(last_12_to_24_count):
+            if past_insights:
+                insight = self.get_insight(past_insights, 'past_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    modified_insight = self.modify_updated_time_range(insight, 12, 24)
+                    self.client.post_insight(modified_insight, f"PAST: Last 12-24 hours - {device['name']}")
+        
+        # Last 24-48 hours
+        last_24_to_48_count = past_config.get("last_24_to_48", 0)
+        for _ in range(last_24_to_48_count):
+            if past_insights:
+                insight = self.get_insight(past_insights, 'past_counter')
+                if insight:
+                    insight = self.modify_insight_properties_for_device(insight, device)
+                    modified_insight = self.modify_updated_time_range(insight, 24, 48)
+                    self.client.post_insight(modified_insight, f"PAST: Last 24-48 hours - {device['name']}")
+        
+        # Non-capacity insights
+        non_capacity_count = config.get("non_capacity_insight", 0)
+        for _ in range(non_capacity_count):
+            if non_capacity_insights:
+                insight = self.get_insight(non_capacity_insights, 'non_capacity_counter')
+                if insight:
+                    insight = self.modify_uid_and_summary_for_device(insight, device)
+                    self.client.post_insight(insight, f"NON-CAPACITY: Current insights - {device['name']}")
+    
+    def modify_insight_properties_for_device(self, insight: Dict, device: Dict) -> Dict:
+        """Modify insight properties for a specific device: UID, severity, summary random numbers, and set specific device."""
+        # Generate new UID
+        insight["uid"] = str(uuid.uuid4())
+        
+        # Randomize severity
+        insight["severity"] = random.choice(self.severity_levels)
+        
+        # Set specific device
+        insight["impactedResources"] = [device]
+        
+        # Replace random number placeholders in summary
+        insight = self.modify_summary_random_numbers(insight)
+        
+        return insight
+    
+    def modify_uid_and_summary_for_device(self, insight: Dict, device: Dict) -> Dict:
+        """Modify UID and summary for a specific device, keeping other properties unchanged."""
+        insight_copy = insight.copy()
+        # Generate new UID
+        insight_copy["uid"] = str(uuid.uuid4())
+        
+        # Set specific device if impactedResources exists
+        if "impactedResources" in insight_copy:
+            insight_copy["impactedResources"] = [device]
+        
+        # Replace random number placeholders in summary
+        insight_copy = self.modify_summary_random_numbers(insight_copy)
+        
+        return insight_copy
+    
+    def generate_device_based_insights(self, config: Dict):
+        """Generate insights in device mode - all configured insights for each device."""
+        device_count = int(os.getenv('AIOPS_DEVICE_COUNT', '3'))
+        available_devices = self.device_inventory.get_all_devices()
+        
+        if not available_devices:
+            print("Warning: No devices available for device-based generation.")
+            return
+        
+        # Limit devices to the configured count
+        devices_to_use = available_devices[:device_count]
+        
+        print(f"Device mode: Generating insights for {len(devices_to_use)} devices")
+        print("-" * 50)
+        
+        for device in devices_to_use:
+            self.generate_insights_for_device(config, device)
+            print("-" * 30)
+    
     def run(self):
         """Main execution method."""
         print(f"Loading configuration from: {self.config_file}")
@@ -340,23 +487,29 @@ class InsightGenerator:
             print("No authentication token provided")
         print(self.device_inventory)
         print(f"Device inventory: {self.device_inventory.get_device_count()} devices loaded")
+        print(f"Generation mode: {self.generation_mode}")
         print("=" * 50)
         
-        # Generate forecast insights
-        print("Generating forecast insights...")
-        self.generate_forecast_insights(config)
-        
-        # Generate current insights
-        print("\nGenerating current insights...")
-        self.generate_current_insights(config)
-        
-        # Generate past insights
-        print("\nGenerating past insights...")
-        self.generate_past_insights(config)
-        
-        # Generate non-capacity insights
-        print("\nGenerating non-capacity insights...")
-        self.generate_non_capacity_insights(config)
+        if self.generation_mode == 'device':
+            # Device-based generation: All insights for each device
+            self.generate_device_based_insights(config)
+        else:
+            # Insight-based generation: All devices for each insight type (default)
+            # Generate forecast insights
+            print("Generating forecast insights...")
+            self.generate_forecast_insights(config)
+            
+            # Generate current insights
+            print("\\nGenerating current insights...")
+            self.generate_current_insights(config)
+            
+            # Generate past insights
+            print("\\nGenerating past insights...")
+            self.generate_past_insights(config)
+            
+            # Generate non-capacity insights
+            print("\\nGenerating non-capacity insights...")
+            self.generate_non_capacity_insights(config)
         
         print("\n" + "=" * 50)
         print("Insight generation completed!")

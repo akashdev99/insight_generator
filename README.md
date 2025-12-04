@@ -89,6 +89,8 @@ The tool supports configuration through environment variables via a `.env` file:
 - `AIOPS_TOKEN`: Bearer token for authentication (optional)
 - `AIOPS_DEVICE_SELECTION`: Device selection strategy - `random` or `sequential` (default: `random`)
 - `INSIGHT_PICKER`: Insight selection strategy - `sequential` or `random` (default: `sequential`)
+- `GENERATION_MODE`: Generation strategy - `device` or `insight` (default: `insight`)
+- `AIOPS_DEVICE_COUNT`: Number of devices to use in device mode (default: `3`)
 
 Example `.env` file:
 ```
@@ -97,6 +99,8 @@ AEGIS_DOMAIN=https://your-aegis-api.com
 AIOPS_TOKEN=your_bearer_token_here
 AIOPS_DEVICE_SELECTION=sequential
 INSIGHT_PICKER=random
+GENERATION_MODE=device
+AIOPS_DEVICE_COUNT=5
 ```
 
 ## How It Works
@@ -112,12 +116,20 @@ INSIGHT_PICKER=random
    - Devices are assigned to insights when posting based on selection strategy
    - Falls back to a default device if API call fails
 
-2. **Round-Robin Selection**:
-   - Insights are selected from templates in round-robin fashion instead of random
-   - Each insight type (forecast, current, past) maintains its own counter
-   - Ensures even distribution of different insight templates
+2. **Generation Modes**:
+   - **Insight Mode** (`GENERATION_MODE=insight`): Default behavior - generates all configured insights for each type across different devices
+   - **Device Mode** (`GENERATION_MODE=device`): Generates all configured insight types for each specific device
+     - Uses `AIOPS_DEVICE_COUNT` to specify number of devices (default: 3)
+     - Creates complete insight profiles per device
+     - Example: If you have 3 devices and config specifies 2 forecast + 1 current insights, it creates 9 total insights (3 per device)
 
-3. **Dynamic Property Modification**:
+3. **Insight Selection Strategy**:
+   - Configurable via `INSIGHT_PICKER` environment variable:
+     - `sequential`: Round-robin selection ensures even distribution of insight templates (default)
+     - `random`: Random selection from available templates for more variety
+   - Each insight type (forecast, current, past, non-capacity) maintains separate selection state
+
+4. **Dynamic Property Modification**:
    - **UID**: Each posted insight gets a new unique identifier
    - **Severity**: Randomly assigned from "CRITICAL", "WARNING", or "INFORMATIONAL"
    - **Device**: Random device from inventory assigned to `impactedResources`
