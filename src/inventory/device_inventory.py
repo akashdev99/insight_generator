@@ -46,7 +46,8 @@ class DeviceInventory:
             
             # Set up query parameters
             params = {
-                'q': 'deviceType:FTDC'
+                'q': 'deviceType:FTDC',
+                'limit': os.getenv('AIOPS_DEVICE_COUNT', '50')
             }
             
             print(f"Fetching devices from: {api_url}")
