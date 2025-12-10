@@ -65,6 +65,15 @@ python insight_generator.py --clear
 python insight_generator.py --clear --endpoint https://your-server.com/api/insights --token your_bearer_token
 ```
 
+### Tenant Loader (copy insights from one domain to another):
+```bash
+# Load insights from source domain and post to target domain (set via AIOPS_DOMAIN)
+python insight_generator.py --load source-domain.com
+
+# With custom token
+python insight_generator.py --load source-domain.com --token your_bearer_token
+```
+
 ### Help:
 ```bash
 python insight_generator.py --help
@@ -181,6 +190,33 @@ The tool supports Bearer token authentication:
 - If no token is provided, requests are made without authentication
 
 The endpoint expects POST requests with JSON payload containing the insight data.
+
+### Tenant Loader Operation
+
+The tenant loader functionality allows copying insights from one domain to another:
+
+1. **Source Domain**: Fetches insights from the specified source domain using GET request
+2. **Limit**: Retrieves up to 300 insights from the source
+3. **Target Domain**: Posts each insight to the target domain (configured via `AIOPS_DOMAIN`)
+4. **Progress Tracking**: Shows real-time progress and transfer statistics
+
+Example tenant loader output:
+```
+📥 Loading insights from: source-domain.com
+📤 Target domain: target-domain.com
+📋 Fetching insights from source domain...
+🌐 GET https://source-domain.com/api/platform/ai-ops-insights/v1/insights
+📝 Query parameters: {'limit': 300}
+✅ Successfully fetched 150 insights
+📦 Found 150 insights to transfer
+🔄 Processing insight 1/150: Critical VPN Alert
+✓ Successfully posted insight [TENANT_LOAD: 1/150]: Critical VPN Alert
+...
+📊 Transfer Summary:
+   ✅ Successfully transferred: 148
+   ❌ Failed transfers: 2
+   📈 Success rate: 98.7%
+```
 
 ## Example Output
 

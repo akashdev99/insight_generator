@@ -107,6 +107,99 @@ class AIOpsClient:
             print(f"✗ Error clearing insights: {e}")
             return False
     
+    def load_and_transfer_insights(self, source_domain: str, target_domain: str) -> bool:
+        """Load insights from source domain and transfer to target domain."""
+        print(f"📋 Fetching insights from source domain...")
+        insights = self.fetch_insights_from_domain(source_domain)
+        
+        if not insights:
+            print("⚠️  No insights found in source domain or failed to fetch.")
+            return False
+        
+        print(f"📦 Found {len(insights)} insights to transfer")
+        
+        success_count = 0
+        failed_count = 0
+        
+        # Create a new client instance for posting to target domain
+        target_client = AIOpsClient(self._build_endpoint(target_domain), self.token, self.dry_run)
+        
+        for i, insight in enumerate(insights, 1):
+            print(f"🔄 Processing insight {i}/{len(insights)}: {insight.get('title', 'Unknown')}")
+            
+            if target_client.post_insight(insight, f"TENANT_LOAD: {i}/{len(insights)}"):
+                success_count += 1
+            else:
+                failed_count += 1
+        
+        print(f"\\n📊 Transfer Summary:")
+        print(f"   ✅ Successfully transferred: {success_count}")
+        print(f"   ❌ Failed transfers: {failed_count}")
+        print(f"   📈 Success rate: {(success_count/len(insights)*100):.1f}%")
+        
+        return failed_count == 0
+    
+    def fetch_insights_from_domain(self, domain: str) -> list:
+        """Fetch all insights from a domain with limit of 300."""
+        try:
+            endpoint = self._build_endpoint(domain)
+            
+            headers = {}
+            if self.token:
+                headers["Authorization"] = f"Bearer {self.token}"
+            
+            # Add query parameter for limit
+            params = {"limit": 300}
+            
+            if self.dry_run:
+                print(f"[DRY RUN] Would fetch insights from: {endpoint}")
+                print(f"[DRY RUN] With parameters: {params}")
+                # Return mock data for dry run
+                return [
+                    {"uid": "mock-1", "title": "Mock Insight 1", "severity": "CRITICAL"},
+                    {"uid": "mock-2", "title": "Mock Insight 2", "severity": "WARNING"}
+                ]
+            
+            print(f"🌐 GET {endpoint}")
+            print(f"📝 Query parameters: {params}")
+            
+            response = requests.get(
+                endpoint,
+                headers=headers,
+                params=params,
+                timeout=60  # Longer timeout for potentially large response
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                # Handle different response formats
+                if isinstance(data, list):
+                    insights = data
+                elif isinstance(data, dict):
+                    # Try common field names for insights array
+                    insights = data.get('data', data.get('insights', data.get('items', [])))
+                else:
+                    insights = []
+                
+                print(f"✅ Successfully fetched {len(insights)} insights")
+                return insights
+            else:
+                print(f"❌ Failed to fetch insights - {response.status_code} - {response.text}")
+                return []
+                
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error fetching insights: {e}")
+            return []
+    
+    def _build_endpoint(self, domain: str) -> str:
+        """Build the full API endpoint URL from domain."""
+        # Remove any trailing slashes and protocol if provided
+        clean_domain = domain.rstrip('/')
+        if not clean_domain.startswith(('http://', 'https://')):
+            clean_domain = f"https://{clean_domain}"
+        
+        return f"{clean_domain}/api/platform/ai-ops-insights/v1/insights"
+    
     def get_endpoint(self) -> str:
         """Get the configured endpoint URL."""
         return self.endpoint
