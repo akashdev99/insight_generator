@@ -55,6 +55,16 @@ python insight_generator.py config.json
 python insight_generator.py config.json --dry-run
 ```
 
+### Clear all insights (requires confirmation):
+```bash
+python insight_generator.py --clear
+```
+
+### Clear all insights with custom endpoint:
+```bash
+python insight_generator.py --clear --endpoint https://your-server.com/api/insights --token your_bearer_token
+```
+
 ### Help:
 ```bash
 python insight_generator.py --help

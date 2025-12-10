@@ -77,6 +77,36 @@ class AIOpsClient:
             print(log_msg)
             return False
     
+    def clear_all_insights(self) -> bool:
+        """Clear all insights from the AI-Ops API endpoint using DELETE method."""
+        if self.dry_run:
+            print("[DRY RUN] Would delete all insights from the platform")
+            if self.token:
+                print(f"[DRY RUN] Would use Bearer token: {self.token[:10]}...")
+            return True
+            
+        try:
+            headers = {}
+            if self.token:
+                headers["Authorization"] = f"Bearer {self.token}"
+            
+            print(f"Sending DELETE request to: {self.endpoint}")
+            response = requests.delete(
+                self.endpoint,
+                headers=headers,
+                timeout=30
+            )
+            
+            if response.status_code in [200, 204, 404]:  # 404 acceptable if no insights exist
+                return True
+            else:
+                print(f"✗ Failed to clear insights - {response.status_code} - {response.text}")
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            print(f"✗ Error clearing insights: {e}")
+            return False
+    
     def get_endpoint(self) -> str:
         """Get the configured endpoint URL."""
         return self.endpoint
