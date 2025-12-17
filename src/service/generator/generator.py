@@ -14,8 +14,8 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any
 from pathlib import Path
 from dotenv import load_dotenv
-from ..client import AIOpsClient
-from ..inventory import DeviceInventory
+from ...client import AIOpsClient
+from ...inventory import DeviceInventory
 
 
 class InsightGenerator:

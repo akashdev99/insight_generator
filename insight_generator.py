@@ -9,7 +9,7 @@ by posting them to the AI-Ops platform endpoint.
 import argparse
 import os
 import sys
-from src.generator import InsightGenerator
+from src.service import InsightGenerator, InsightClearer, InsightMigrator
 from dotenv import load_dotenv
 
 def main():
@@ -50,41 +50,20 @@ def main():
     
     # Handle clear insights operation
     if args.clear:
-        # For clear operation, we don't need config file validation
-        from src.client import AIOpsClient
+        clearer = InsightClearer(args.endpoint, args.token, args.dry_run)
+        success = clearer.clear_with_confirmation()
         
-        print("⚠️  WARNING: This will delete ALL insights from the platform!")
-        confirmation = input("Are you sure you want to continue? (yes/no): ").lower().strip()
-        
-        if confirmation == 'yes':
-            client = AIOpsClient(args.endpoint, args.token, args.dry_run)
-            success = client.clear_all_insights()
-            if success:
-                print("✓ Successfully cleared all insights.")
-            else:
-                print("✗ Failed to clear insights.")
-                sys.exit(1)
+        if success:
+            print("✓ Successfully cleared all insights.")
         else:
-            print("Operation cancelled.")
+            print("✗ Failed to clear insights.")
+            sys.exit(1)
         return
     
     # Handle tenant loader operation
     if args.load:
-        # For load operation, we don't need config file validation
-        from src.client import AIOpsClient
-        
-        source_domain = args.load
-        target_domain = os.getenv('AIOPS_DOMAIN')
-        
-        if not target_domain:
-            print("Error: AIOPS_DOMAIN environment variable must be set for target domain.")
-            sys.exit(1)
-        
-        print(f"📥 Loading insights from: {source_domain}")
-        print(f"📤 Target domain: {target_domain}")
-        
-        client = AIOpsClient(args.endpoint, args.token, args.dry_run)
-        success = client.load_and_transfer_insights(source_domain, target_domain)
+        migrator = InsightMigrator(args.endpoint, args.token, args.dry_run)
+        success = migrator.migrate_insights(args.load)
         
         if success:
             print("✓ Successfully completed tenant loading operation.")
@@ -94,6 +73,11 @@ def main():
         return
     
     # Validate config file exists (only needed for generation operations)
+    if not args.config_file:
+        print("Error: Configuration file is required for insight generation.")
+        print("Use --help to see available options.")
+        sys.exit(1)
+        
     if not os.path.isfile(args.config_file):
         print(f"Error: Configuration file '{args.config_file}' does not exist.")
         sys.exit(1)
