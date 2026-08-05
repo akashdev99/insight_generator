@@ -108,6 +108,7 @@ The tool supports configuration through environment variables via a `.env` file:
 - `AIOPS_TOKEN`: Bearer token for authentication (optional)
 - `AIOPS_DEVICE_SELECTION`: Device selection strategy - `random` or `sequential` (default: `random`)
 - `INSIGHT_PICKER`: Insight selection strategy - `sequential` or `random` (default: `sequential`)
+- `AIOPS_SEVERITY_MODE`: Severity strategy - `pinned` keeps severity fixed per device, `random` picks per insight (default: `pinned`)
 - `GENERATION_MODE`: Generation strategy - `device` or `insight` (default: `insight`)
 - `AIOPS_DEVICE_COUNT`: Number of devices to use in device mode (default: `3`)
 
@@ -118,6 +119,7 @@ AEGIS_DOMAIN=https://your-aegis-api.com
 AIOPS_TOKEN=your_bearer_token_here
 AIOPS_DEVICE_SELECTION=sequential
 INSIGHT_PICKER=random
+AIOPS_SEVERITY_MODE=pinned
 GENERATION_MODE=device
 AIOPS_DEVICE_COUNT=5
 ```

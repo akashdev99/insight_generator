@@ -1,0 +1,981 @@
+{
+    "uid": "026a9029-2b85-4195-8aea-d824e06e54e5",
+    "severity": "WARNING",
+    "category": "TRAFFIC_CAPACITY",
+    "impactedResources": [
+        {
+            "uid": "f01414f3-3add-443a-bb72-760a111adc43",
+            "name": "ftd_15",
+            "type": "FTD",
+            "metadata": {
+                "fmcUid": "ac364699-1676-4c21-9665-927a3487eb99",
+                "fmcType": "FMCE"
+            }
+        }
+    ],
+    "title": "High Traffic Caused by Elephant Flow",
+    "summary": "AgenticOps has detected that <random_number> flows are generating high traffic in the firewall, which may cause performance stress on the Snort cores.",
+    "createdTime": "2026-08-05T07:24:04.926+00:00",
+    "updatedTime": "2026-08-05T07:44:04.947+00:00",
+    "data": {
+        "@type": "ElephantFlowInsightData",
+        "flows": [
+            {
+                "sourceIp": "10.10.0.98",
+                "destinationIp": "20.20.0.98",
+                "sourcePort": 56380,
+                "destinationPort": 443,
+                "protocol": 6,
+                "stats": {
+                    "cpuUsage": [
+                        {
+                            "timestamp": 1785914464,
+                            "value": 17.862221989263638
+                        },
+                        {
+                            "timestamp": 1785914524,
+                            "value": 22.64623120618379
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 28.079914343420526
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 25.18068339863245
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 25.18068339863245
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 28.4978328562
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 28.4978328562
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 23.025220337585058
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 22.586275119675996
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 22.925271103986518
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 25.072738499462208
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 23.315867963711092
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 23.315867963711092
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 24.63624524241208
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 23.7202893053251
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 20.91583821221711
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 20.91583821221711
+                        },
+                        {
+                            "timestamp": 1785915544,
+                            "value": 20.91583821221711
+                        },
+                        {
+                            "timestamp": 1785915664,
+                            "value": 20.91583821221711
+                        }
+                    ],
+                    "throughput": [
+                        {
+                            "timestamp": 1785914524,
+                            "value": 15750462.970661556
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 18221707.157340165
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 49044146.478241086
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 64685129.83500898
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 0.011071864722484637
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 85062650.68520659
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 84379019.24077374
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 84351263.89351404
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 84255919.86275254
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 83733799.31794593
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 83138477.50902545
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 83636635.40667899
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 82745508.62833282
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 82752837.23095417
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 55242430.308187425
+                        }
+                    ]
+                },
+                "application": {
+                    "id": 3878,
+                    "name": "CrashPlan",
+                    "description": "Cloud-based enterprise backup solution.",
+                    "riskIndex": 1
+                }
+            },
+            {
+                "sourceIp": "10.10.0.98",
+                "destinationIp": "20.20.0.98",
+                "sourcePort": 56370,
+                "destinationPort": 443,
+                "protocol": 6,
+                "stats": {
+                    "cpuUsage": [
+                        {
+                            "timestamp": 1785914464,
+                            "value": 14.53107218843107
+                        },
+                        {
+                            "timestamp": 1785914524,
+                            "value": 19.666982205995474
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 20.66810500331498
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 21.820728392617145
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 21.820728392617145
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 21.928616894673596
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 17.560201416883395
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 17.560201416883395
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 19.87342097062265
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 18.539746900265936
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 19.345389569126187
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 19.680098355529992
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 19.680098355529992
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 21.177533477325298
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 21.394717960513162
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 18.215433302582557
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 18.215433302582557
+                        },
+                        {
+                            "timestamp": 1785915544,
+                            "value": 18.215433302582557
+                        },
+                        {
+                            "timestamp": 1785915664,
+                            "value": 18.215433302582557
+                        }
+                    ],
+                    "throughput": [
+                        {
+                            "timestamp": 1785914524,
+                            "value": 12602870.353677373
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 14915689.082948975
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 41538876.937370405
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 52712080.130806945
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 0.005168659025750029
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 70855020.79467537
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 70264658.2196234
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 70380545.1972259
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 70020373.86363088
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 69533043.61792994
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 69088551.64204322
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 69213270.55453977
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 68773938.1749419
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 68615472.87812112
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 44473665.45025497
+                        }
+                    ]
+                },
+                "application": {
+                    "id": 47,
+                    "name": "Backblaze",
+                    "description": "Online backup tool for Windows and Mac users.",
+                    "riskIndex": 3
+                }
+            },
+            {
+                "sourceIp": "10.10.0.98",
+                "destinationIp": "20.20.0.98",
+                "sourcePort": 56372,
+                "destinationPort": 443,
+                "protocol": 6,
+                "stats": {
+                    "cpuUsage": [
+                        {
+                            "timestamp": 1785914464,
+                            "value": 11.362846246036934
+                        },
+                        {
+                            "timestamp": 1785914524,
+                            "value": 16.32237348482814
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 21.285539477620894
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 18.126132807890645
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 18.126132807890645
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 21.501175966533523
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 21.501175966533523
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 16.66613057631934
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 19.3067425714813
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 17.055477553749743
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 19.849079956380095
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 16.361366892302158
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 16.361366892302158
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 21.24823434137008
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 14.8819643718739
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 14.98736961047429
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 14.98736961047429
+                        },
+                        {
+                            "timestamp": 1785915544,
+                            "value": 14.98736961047429
+                        },
+                        {
+                            "timestamp": 1785915664,
+                            "value": 14.98736961047429
+                        }
+                    ],
+                    "throughput": [
+                        {
+                            "timestamp": 1785914524,
+                            "value": 12601666.629555767
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 14739588.343493985
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 37688528.32799187
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 48031504.457362294
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 34174792.66063297
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 63723374.2044554
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 63134891.38812097
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 63139384.943089895
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 62932313.78043233
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 62329099.22436607
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 61867452.49398051
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 62195880.44419783
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 61420503.100439005
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 61478835.397143245
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 40460959.453923635
+                        }
+                    ]
+                },
+                "application": {
+                    "id": 47,
+                    "name": "Backblaze",
+                    "description": "Online backup tool for Windows and Mac users.",
+                    "riskIndex": 3
+                }
+            },
+            {
+                "sourceIp": "10.10.0.98",
+                "destinationIp": "20.20.0.98",
+                "sourcePort": 56426,
+                "destinationPort": 443,
+                "protocol": 6,
+                "stats": {
+                    "cpuUsage": [
+                        {
+                            "timestamp": 1785914464,
+                            "value": 11.929025150573695
+                        },
+                        {
+                            "timestamp": 1785914524,
+                            "value": 18.78880562258296
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 22.52969475416542
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 22.450774652607176
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 22.450774652607176
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 21.900533661545616
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 21.900533661545616
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 22.911061909831982
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 19.911207189868847
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 23.412886511606704
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 22.453882115708637
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 26.39072893009458
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 26.39072893009458
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 21.20223866425142
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 21.58776787393809
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 22.924384533786302
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 22.924384533786302
+                        },
+                        {
+                            "timestamp": 1785915544,
+                            "value": 22.924384533786302
+                        },
+                        {
+                            "timestamp": 1785915664,
+                            "value": 22.924384533786302
+                        }
+                    ],
+                    "throughput": [
+                        {
+                            "timestamp": 1785914524,
+                            "value": 22048541.68852202
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 25238685.829645634
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 11722387.047863746
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 0.011855998713669236
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 0.015244108321267444
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 77445218.93300128
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 77824218.69285226
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 77491612.31954993
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 77126470.0409695
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 76592337.26372425
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 76161822.57068835
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 76525214.36023149
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 75656704.99647264
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 75601390.89606474
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 51092549.29012679
+                        }
+                    ]
+                },
+                "application": {
+                    "id": 6009,
+                    "name": "Cloudload",
+                    "description": "It provides audio and video streaming.",
+                    "riskIndex": 5
+                }
+            },
+            {
+                "sourceIp": "10.10.0.98",
+                "destinationIp": "20.20.0.98",
+                "sourcePort": 56324,
+                "destinationPort": 3306,
+                "protocol": 6,
+                "stats": {
+                    "cpuUsage": [
+                        {
+                            "timestamp": 1785914464,
+                            "value": 22.964868868440274
+                        },
+                        {
+                            "timestamp": 1785914524,
+                            "value": 21.24494035042365
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 24.006642194162744
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 27.36919755771964
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 27.36919755771964
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 25.419679727973566
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 26.64117933699297
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 26.64117933699297
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 30.87828533019265
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 27.94700027938582
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 23.620391375174403
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 28.947884062451287
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 23.79350141904194
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 23.79350141904194
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 23.26436090830435
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 23.182806687488554
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 23.182806687488554
+                        },
+                        {
+                            "timestamp": 1785915544,
+                            "value": 23.182806687488554
+                        },
+                        {
+                            "timestamp": 1785915664,
+                            "value": 23.182806687488554
+                        }
+                    ],
+                    "throughput": [
+                        {
+                            "timestamp": 1785914524,
+                            "value": 15756944.470312288
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 19066358.53213494
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 54928309.64798253
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 67058847.32909696
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 0.01589622024291154
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 55484131.810925715
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 92376044.97074041
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 91350477.62519008
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 91970455.0973123
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 91653069.37608914
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 90909162.9261458
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 90509837.8109457
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 90194257.2615337
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 90594420.43986094
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 89582800.11409554
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 56673065.44551398
+                        }
+                    ]
+                },
+                "application": {
+                    "id": 747,
+                    "name": "MySQL",
+                    "description": "A relational database management system (RDBMS) that runs as a server providing multi-user access to a number of databases.",
+                    "riskIndex": 1
+                }
+            },
+            {
+                "sourceIp": "10.10.0.98",
+                "destinationIp": "20.20.0.98",
+                "sourcePort": 56326,
+                "destinationPort": 3306,
+                "protocol": 6,
+                "stats": {
+                    "cpuUsage": [
+                        {
+                            "timestamp": 1785914464,
+                            "value": 8.927976452644263
+                        },
+                        {
+                            "timestamp": 1785914524,
+                            "value": 13.118167676196869
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 12.069121418476296
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 11.417623580921417
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 11.417623580921417
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 10.656481545276046
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 13.540708424560432
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 13.540708424560432
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 13.387370455862722
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 12.251821241221668
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 12.355597946545782
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 11.492405798191836
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 9.75801570248978
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 9.75801570248978
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 11.370585685254179
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 10.062559764609107
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 10.062559764609107
+                        },
+                        {
+                            "timestamp": 1785915544,
+                            "value": 10.062559764609107
+                        },
+                        {
+                            "timestamp": 1785915664,
+                            "value": 10.062559764609107
+                        }
+                    ],
+                    "throughput": [
+                        {
+                            "timestamp": 1785914524,
+                            "value": 4411458.36286918
+                        },
+                        {
+                            "timestamp": 1785914584,
+                            "value": 5278557.039003208
+                        },
+                        {
+                            "timestamp": 1785914644,
+                            "value": 27003520.992410045
+                        },
+                        {
+                            "timestamp": 1785914704,
+                            "value": 36528162.88931209
+                        },
+                        {
+                            "timestamp": 1785914764,
+                            "value": 0.03881317948058353
+                        },
+                        {
+                            "timestamp": 1785914825,
+                            "value": 29347341.551171273
+                        },
+                        {
+                            "timestamp": 1785914885,
+                            "value": 49514896.39370703
+                        },
+                        {
+                            "timestamp": 1785914945,
+                            "value": 48990650.849965274
+                        },
+                        {
+                            "timestamp": 1785915005,
+                            "value": 49070752.4553647
+                        },
+                        {
+                            "timestamp": 1785915065,
+                            "value": 48834821.79636009
+                        },
+                        {
+                            "timestamp": 1785915184,
+                            "value": 48001275.828415826
+                        },
+                        {
+                            "timestamp": 1785915244,
+                            "value": 47796170.61647709
+                        },
+                        {
+                            "timestamp": 1785915304,
+                            "value": 47798945.907003455
+                        },
+                        {
+                            "timestamp": 1785915364,
+                            "value": 47378420.491397575
+                        },
+                        {
+                            "timestamp": 1785915424,
+                            "value": 47257367.91577258
+                        },
+                        {
+                            "timestamp": 1785915484,
+                            "value": 30184402.22942242
+                        }
+                    ]
+                },
+                "application": {
+                    "id": 747,
+                    "name": "MySQL",
+                    "description": "A relational database management system (RDBMS) that runs as a server providing multi-user access to a number of databases.",
+                    "riskIndex": 1
+                }
+            }
+        ]
+    },
+    "analysis": {
+        "detail": "AgenticOps has identified 6 high-loss network flows, including elephant flows consuming excessive bandwidth, that are significantly impacting Snort core performance. These flows are causing high CPU utilization, packet drops, and reduced network speeds.",
+        "probableCauses": [
+            {
+                "title": "",
+                "detail": "The observed performance issues, including high CPU utilization, packet loss, and overall network slowdown, are likely due to connections transferring large amount of data.",
+                "confidence": "MEDIUM"
+            }
+        ],
+        "remediation": [
+            {
+                "title": "",
+                "markdownText": "Large data transfers can strain your network. To address this, consider the following options:\n\n### Trusted applications\nIf the flow is legitimate and trusted, bypassing security checks can boost performance. However, ensure that access controls are in place to prevent misuse.\n\n### Risky applications\nIf the flow is suspicious or noncritical, throttling can minimize its impact on network performance. Make sure essential operations remain unaffected.\n\n### Legitimate but demanding applications\nIf the flow is crucial and inspection is mandatory, Threat Defense clustering can effectively manage high throughput. Consider upgrading your security infrastructure to avoid performance bottlenecks.\n\nThe optimal approach depends on the specific situation. Carefully evaluate the flow's source, purpose, and risk profile before implementing any solution."
+            }
+        ]
+    },
+    "type": "ELEPHANT_FLOW",
+    "state": "RESOLVED"
+}

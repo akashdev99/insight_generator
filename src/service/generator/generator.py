@@ -34,6 +34,7 @@ class InsightGenerator:
         
         # Insight picker strategy (sequential or random)
         self.insight_picker_mode = os.getenv('INSIGHT_PICKER', 'sequential').lower()
+        self.severity_mode = os.getenv('AIOPS_SEVERITY_MODE', 'pinned').lower()
         
         # Round-robin counters for each insight type (used only in sequential mode)
         self.forecast_counter = 0
@@ -99,19 +100,25 @@ class InsightGenerator:
     def get_random_insight(self, insights: List[Dict]) -> Dict:
         """Get a random insight from the list."""
         return random.choice(insights).copy()
+
+    def severity_for_device(self, device: Dict) -> str:
+        """Pick the same severity every time for the same device."""
+        if self.severity_mode == "random":
+            return random.choice(self.severity_levels)
+
+        key = device.get("uid") or device.get("name") or ""
+        return self.severity_levels[sum(key.encode("utf-8")) % len(self.severity_levels)]
     
     def modify_insight_properties(self, insight: Dict) -> Dict:
         """Modify insight properties: UID, severity, impacted device, and summary random numbers."""
         # Generate new UID
         insight["uid"] = str(uuid.uuid4())
-        
-        # Randomize severity
-        insight["severity"] = random.choice(self.severity_levels)
-        
+
         # Replace impacted device with random one from inventory
         if "impactedResources" in insight and insight["impactedResources"]:
             new_device = self.device_inventory.get_device()
             insight["impactedResources"] = [new_device]
+            insight["severity"] = self.severity_for_device(new_device)
         
         # Replace random number placeholders in summary
         insight = self.modify_summary_random_numbers(insight)
@@ -430,8 +437,7 @@ class InsightGenerator:
         # Generate new UID
         insight["uid"] = str(uuid.uuid4())
         
-        # Randomize severity
-        insight["severity"] = random.choice(self.severity_levels)
+        insight["severity"] = self.severity_for_device(device)
         
         # Set specific device
         insight["impactedResources"] = [device]

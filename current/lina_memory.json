@@ -1,0 +1,1102 @@
+{
+    "uid": "1b504fa8-97c2-40ad-b074-7507a6d92da5",
+    "severity": "CRITICAL",
+    "category": "HEALTH",
+    "impactedResources": [
+        {
+            "uid": "9a513e96-0677-4f1c-a6ac-3b445112e54a",
+            "name": "ftd_25",
+            "type": "FTD",
+            "metadata": {
+                "fmcUid": "ac364699-1676-4c21-9665-927a3487eb99",
+                "fmcType": "FMCE"
+            }
+        }
+    ],
+    "title": "High Data Plane Memory Usage",
+    "summary": "data plane memory utilization has reached <random_number>%, surpassing the defined threshold.",
+    "createdTime": "2026-08-05T07:26:05.000+00:00",
+    "updatedTime": "2026-08-05T07:40:04.933+00:00",
+    "data": {
+        "@type": "CorrelationInsightData",
+        "breachDate": "2026-08-05T07:26:05.000+00:00",
+        "baseMetric": {
+            "metricName": "Data Plane Memory",
+            "unit": "PERCENTAGE",
+            "timeSeries": [
+                {
+                    "timestamp": 1785911705000,
+                    "value": 2.0
+                },
+                {
+                    "timestamp": 1785911765000,
+                    "value": 3.0
+                },
+                {
+                    "timestamp": 1785911825000,
+                    "value": 8.0
+                },
+                {
+                    "timestamp": 1785911885000,
+                    "value": 8.0
+                },
+                {
+                    "timestamp": 1785911945000,
+                    "value": 6.0
+                },
+                {
+                    "timestamp": 1785912005000,
+                    "value": 14.0
+                },
+                {
+                    "timestamp": 1785912065000,
+                    "value": 14.0
+                },
+                {
+                    "timestamp": 1785912125000,
+                    "value": 10.0
+                },
+                {
+                    "timestamp": 1785912185000,
+                    "value": 13.0
+                },
+                {
+                    "timestamp": 1785912245000,
+                    "value": 16.0
+                },
+                {
+                    "timestamp": 1785912305000,
+                    "value": 17.0
+                },
+                {
+                    "timestamp": 1785912365000,
+                    "value": 20.0
+                },
+                {
+                    "timestamp": 1785912425000,
+                    "value": 26.0
+                },
+                {
+                    "timestamp": 1785912485000,
+                    "value": 24.0
+                },
+                {
+                    "timestamp": 1785912545000,
+                    "value": 26.0
+                },
+                {
+                    "timestamp": 1785912605000,
+                    "value": 26.0
+                },
+                {
+                    "timestamp": 1785912665000,
+                    "value": 29.0
+                },
+                {
+                    "timestamp": 1785912725000,
+                    "value": 27.0
+                },
+                {
+                    "timestamp": 1785912785000,
+                    "value": 33.0
+                },
+                {
+                    "timestamp": 1785912845000,
+                    "value": 28.0
+                },
+                {
+                    "timestamp": 1785912905000,
+                    "value": 35.0
+                },
+                {
+                    "timestamp": 1785912965000,
+                    "value": 33.0
+                },
+                {
+                    "timestamp": 1785913025000,
+                    "value": 36.0
+                },
+                {
+                    "timestamp": 1785913085000,
+                    "value": 37.0
+                },
+                {
+                    "timestamp": 1785913145000,
+                    "value": 37.0
+                },
+                {
+                    "timestamp": 1785913205000,
+                    "value": 41.0
+                },
+                {
+                    "timestamp": 1785913265000,
+                    "value": 40.0
+                },
+                {
+                    "timestamp": 1785913325000,
+                    "value": 41.0
+                },
+                {
+                    "timestamp": 1785913385000,
+                    "value": 43.0
+                },
+                {
+                    "timestamp": 1785913445000,
+                    "value": 48.0
+                },
+                {
+                    "timestamp": 1785913505000,
+                    "value": 47.0
+                },
+                {
+                    "timestamp": 1785913565000,
+                    "value": 49.0
+                },
+                {
+                    "timestamp": 1785913625000,
+                    "value": 52.0
+                },
+                {
+                    "timestamp": 1785913685000,
+                    "value": 49.0
+                },
+                {
+                    "timestamp": 1785913745000,
+                    "value": 48.0
+                },
+                {
+                    "timestamp": 1785913805000,
+                    "value": 51.0
+                },
+                {
+                    "timestamp": 1785913865000,
+                    "value": 54.0
+                },
+                {
+                    "timestamp": 1785913925000,
+                    "value": 58.0
+                },
+                {
+                    "timestamp": 1785913985000,
+                    "value": 57.0
+                },
+                {
+                    "timestamp": 1785914045000,
+                    "value": 62.0
+                },
+                {
+                    "timestamp": 1785914105000,
+                    "value": 62.0
+                },
+                {
+                    "timestamp": 1785914165000,
+                    "value": 64.0
+                },
+                {
+                    "timestamp": 1785914225000,
+                    "value": 65.0
+                },
+                {
+                    "timestamp": 1785914285000,
+                    "value": 68.0
+                },
+                {
+                    "timestamp": 1785914345000,
+                    "value": 68.0
+                },
+                {
+                    "timestamp": 1785914405000,
+                    "value": 69.0
+                },
+                {
+                    "timestamp": 1785914465000,
+                    "value": 71.0
+                },
+                {
+                    "timestamp": 1785914525000,
+                    "value": 74.0
+                },
+                {
+                    "timestamp": 1785914585000,
+                    "value": 76.0
+                },
+                {
+                    "timestamp": 1785914645000,
+                    "value": 75.0
+                },
+                {
+                    "timestamp": 1785914705000,
+                    "value": 80.0
+                },
+                {
+                    "timestamp": 1785914765000,
+                    "value": 81.0
+                },
+                {
+                    "timestamp": 1785914825000,
+                    "value": 83.0
+                },
+                {
+                    "timestamp": 1785914885000,
+                    "value": 85.0
+                },
+                {
+                    "timestamp": 1785914945000,
+                    "value": 85.0
+                },
+                {
+                    "timestamp": 1785915005000,
+                    "value": 85.0
+                },
+                {
+                    "timestamp": 1785915065000,
+                    "value": 87.0
+                },
+                {
+                    "timestamp": 1785915125000,
+                    "value": 86.0
+                },
+                {
+                    "timestamp": 1785915185000,
+                    "value": 82.0
+                },
+                {
+                    "timestamp": 1785915245000,
+                    "value": 85.0
+                },
+                {
+                    "timestamp": 1785915305000,
+                    "value": 61.0
+                },
+                {
+                    "timestamp": 1785915365000,
+                    "value": 59.0
+                },
+                {
+                    "timestamp": 1785915425000,
+                    "value": 59.0
+                },
+                {
+                    "timestamp": 1785915485000,
+                    "value": 59.0
+                },
+                {
+                    "timestamp": 1785915545000,
+                    "value": 59.0
+                }
+            ]
+        },
+        "correlationStartDate": "2026-08-05T06:35:05.000+00:00",
+        "correlationEndDate": "2026-08-05T07:39:05.000+00:00",
+        "correlationMetrics": [
+            {
+                "metricName": "Deployed ACE Configurations",
+                "timeSeries": [
+                    {
+                        "timestamp": 1785911705000,
+                        "value": 11.0
+                    },
+                    {
+                        "timestamp": 1785911765000,
+                        "value": 6.0
+                    },
+                    {
+                        "timestamp": 1785911825000,
+                        "value": 13.0
+                    },
+                    {
+                        "timestamp": 1785911885000,
+                        "value": 16.0
+                    },
+                    {
+                        "timestamp": 1785911945000,
+                        "value": 18.0
+                    },
+                    {
+                        "timestamp": 1785912005000,
+                        "value": 18.0
+                    },
+                    {
+                        "timestamp": 1785912065000,
+                        "value": 16.0
+                    },
+                    {
+                        "timestamp": 1785912125000,
+                        "value": 22.0
+                    },
+                    {
+                        "timestamp": 1785912185000,
+                        "value": 26.0
+                    },
+                    {
+                        "timestamp": 1785912245000,
+                        "value": 23.0
+                    },
+                    {
+                        "timestamp": 1785912305000,
+                        "value": 21.0
+                    },
+                    {
+                        "timestamp": 1785912365000,
+                        "value": 26.0
+                    },
+                    {
+                        "timestamp": 1785912425000,
+                        "value": 27.0
+                    },
+                    {
+                        "timestamp": 1785912485000,
+                        "value": 28.0
+                    },
+                    {
+                        "timestamp": 1785912545000,
+                        "value": 30.0
+                    },
+                    {
+                        "timestamp": 1785912605000,
+                        "value": 30.0
+                    },
+                    {
+                        "timestamp": 1785912665000,
+                        "value": 33.0
+                    },
+                    {
+                        "timestamp": 1785912725000,
+                        "value": 39.0
+                    },
+                    {
+                        "timestamp": 1785912785000,
+                        "value": 35.0
+                    },
+                    {
+                        "timestamp": 1785912845000,
+                        "value": 37.0
+                    },
+                    {
+                        "timestamp": 1785912905000,
+                        "value": 38.0
+                    },
+                    {
+                        "timestamp": 1785912965000,
+                        "value": 39.0
+                    },
+                    {
+                        "timestamp": 1785913025000,
+                        "value": 42.0
+                    },
+                    {
+                        "timestamp": 1785913085000,
+                        "value": 47.0
+                    },
+                    {
+                        "timestamp": 1785913145000,
+                        "value": 46.0
+                    },
+                    {
+                        "timestamp": 1785913205000,
+                        "value": 45.0
+                    },
+                    {
+                        "timestamp": 1785913265000,
+                        "value": 44.0
+                    },
+                    {
+                        "timestamp": 1785913325000,
+                        "value": 47.0
+                    },
+                    {
+                        "timestamp": 1785913385000,
+                        "value": 53.0
+                    },
+                    {
+                        "timestamp": 1785913445000,
+                        "value": 52.0
+                    },
+                    {
+                        "timestamp": 1785913505000,
+                        "value": 51.0
+                    },
+                    {
+                        "timestamp": 1785913565000,
+                        "value": 57.0
+                    },
+                    {
+                        "timestamp": 1785913625000,
+                        "value": 54.0
+                    },
+                    {
+                        "timestamp": 1785913685000,
+                        "value": 59.0
+                    },
+                    {
+                        "timestamp": 1785913745000,
+                        "value": 58.0
+                    },
+                    {
+                        "timestamp": 1785913805000,
+                        "value": 64.0
+                    },
+                    {
+                        "timestamp": 1785913865000,
+                        "value": 60.0
+                    },
+                    {
+                        "timestamp": 1785913925000,
+                        "value": 67.0
+                    },
+                    {
+                        "timestamp": 1785913985000,
+                        "value": 66.0
+                    },
+                    {
+                        "timestamp": 1785914045000,
+                        "value": 67.0
+                    },
+                    {
+                        "timestamp": 1785914105000,
+                        "value": 66.0
+                    },
+                    {
+                        "timestamp": 1785914165000,
+                        "value": 68.0
+                    },
+                    {
+                        "timestamp": 1785914225000,
+                        "value": 70.0
+                    },
+                    {
+                        "timestamp": 1785914285000,
+                        "value": 70.0
+                    },
+                    {
+                        "timestamp": 1785914345000,
+                        "value": 73.0
+                    },
+                    {
+                        "timestamp": 1785914405000,
+                        "value": 76.0
+                    },
+                    {
+                        "timestamp": 1785914465000,
+                        "value": 76.0
+                    },
+                    {
+                        "timestamp": 1785914525000,
+                        "value": 80.0
+                    },
+                    {
+                        "timestamp": 1785914585000,
+                        "value": 81.0
+                    },
+                    {
+                        "timestamp": 1785914645000,
+                        "value": 80.0
+                    },
+                    {
+                        "timestamp": 1785914705000,
+                        "value": 83.0
+                    },
+                    {
+                        "timestamp": 1785914765000,
+                        "value": 86.0
+                    },
+                    {
+                        "timestamp": 1785914825000,
+                        "value": 84.0
+                    },
+                    {
+                        "timestamp": 1785914885000,
+                        "value": 87.0
+                    },
+                    {
+                        "timestamp": 1785914945000,
+                        "value": 89.0
+                    },
+                    {
+                        "timestamp": 1785915005000,
+                        "value": 91.0
+                    },
+                    {
+                        "timestamp": 1785915065000,
+                        "value": 90.0
+                    },
+                    {
+                        "timestamp": 1785915125000,
+                        "value": 85.0
+                    },
+                    {
+                        "timestamp": 1785915185000,
+                        "value": 85.0
+                    },
+                    {
+                        "timestamp": 1785915245000,
+                        "value": 85.0
+                    },
+                    {
+                        "timestamp": 1785915305000,
+                        "value": 85.0
+                    },
+                    {
+                        "timestamp": 1785915365000,
+                        "value": 85.0
+                    },
+                    {
+                        "timestamp": 1785915425000,
+                        "value": 85.0
+                    },
+                    {
+                        "timestamp": 1785915485000,
+                        "value": 85.0
+                    }
+                ],
+                "changePercentage": 0.0,
+                "correlationRank": "HIGH"
+            },
+            {
+                "metricName": "Connections",
+                "timeSeries": [
+                    {
+                        "timestamp": 1785911705000,
+                        "value": 9.0
+                    },
+                    {
+                        "timestamp": 1785911765000,
+                        "value": 12.0
+                    },
+                    {
+                        "timestamp": 1785911825000,
+                        "value": 17.0
+                    },
+                    {
+                        "timestamp": 1785911885000,
+                        "value": 15.0
+                    },
+                    {
+                        "timestamp": 1785911945000,
+                        "value": 16.0
+                    },
+                    {
+                        "timestamp": 1785912005000,
+                        "value": 23.0
+                    },
+                    {
+                        "timestamp": 1785912065000,
+                        "value": 17.0
+                    },
+                    {
+                        "timestamp": 1785912125000,
+                        "value": 21.0
+                    },
+                    {
+                        "timestamp": 1785912185000,
+                        "value": 20.0
+                    },
+                    {
+                        "timestamp": 1785912245000,
+                        "value": 23.0
+                    },
+                    {
+                        "timestamp": 1785912305000,
+                        "value": 25.0
+                    },
+                    {
+                        "timestamp": 1785912365000,
+                        "value": 26.0
+                    },
+                    {
+                        "timestamp": 1785912425000,
+                        "value": 28.0
+                    },
+                    {
+                        "timestamp": 1785912485000,
+                        "value": 27.0
+                    },
+                    {
+                        "timestamp": 1785912545000,
+                        "value": 30.0
+                    },
+                    {
+                        "timestamp": 1785912605000,
+                        "value": 35.0
+                    },
+                    {
+                        "timestamp": 1785912665000,
+                        "value": 38.0
+                    },
+                    {
+                        "timestamp": 1785912725000,
+                        "value": 36.0
+                    },
+                    {
+                        "timestamp": 1785912785000,
+                        "value": 37.0
+                    },
+                    {
+                        "timestamp": 1785912845000,
+                        "value": 37.0
+                    },
+                    {
+                        "timestamp": 1785912905000,
+                        "value": 39.0
+                    },
+                    {
+                        "timestamp": 1785912965000,
+                        "value": 40.0
+                    },
+                    {
+                        "timestamp": 1785913025000,
+                        "value": 42.0
+                    },
+                    {
+                        "timestamp": 1785913085000,
+                        "value": 46.0
+                    },
+                    {
+                        "timestamp": 1785913145000,
+                        "value": 46.0
+                    },
+                    {
+                        "timestamp": 1785913205000,
+                        "value": 47.0
+                    },
+                    {
+                        "timestamp": 1785913265000,
+                        "value": 49.0
+                    },
+                    {
+                        "timestamp": 1785913325000,
+                        "value": 47.0
+                    },
+                    {
+                        "timestamp": 1785913385000,
+                        "value": 55.0
+                    },
+                    {
+                        "timestamp": 1785913445000,
+                        "value": 54.0
+                    },
+                    {
+                        "timestamp": 1785913505000,
+                        "value": 54.0
+                    },
+                    {
+                        "timestamp": 1785913565000,
+                        "value": 57.0
+                    },
+                    {
+                        "timestamp": 1785913625000,
+                        "value": 51.0
+                    },
+                    {
+                        "timestamp": 1785913685000,
+                        "value": 58.0
+                    },
+                    {
+                        "timestamp": 1785913745000,
+                        "value": 58.0
+                    },
+                    {
+                        "timestamp": 1785913805000,
+                        "value": 63.0
+                    },
+                    {
+                        "timestamp": 1785913865000,
+                        "value": 62.0
+                    },
+                    {
+                        "timestamp": 1785913925000,
+                        "value": 61.0
+                    },
+                    {
+                        "timestamp": 1785913985000,
+                        "value": 67.0
+                    },
+                    {
+                        "timestamp": 1785914045000,
+                        "value": 67.0
+                    },
+                    {
+                        "timestamp": 1785914105000,
+                        "value": 71.0
+                    },
+                    {
+                        "timestamp": 1785914165000,
+                        "value": 71.0
+                    },
+                    {
+                        "timestamp": 1785914225000,
+                        "value": 72.0
+                    },
+                    {
+                        "timestamp": 1785914285000,
+                        "value": 73.0
+                    },
+                    {
+                        "timestamp": 1785914345000,
+                        "value": 74.0
+                    },
+                    {
+                        "timestamp": 1785914405000,
+                        "value": 74.0
+                    },
+                    {
+                        "timestamp": 1785914465000,
+                        "value": 75.0
+                    },
+                    {
+                        "timestamp": 1785914525000,
+                        "value": 80.0
+                    },
+                    {
+                        "timestamp": 1785914585000,
+                        "value": 78.0
+                    },
+                    {
+                        "timestamp": 1785914645000,
+                        "value": 83.0
+                    },
+                    {
+                        "timestamp": 1785914705000,
+                        "value": 82.0
+                    },
+                    {
+                        "timestamp": 1785914765000,
+                        "value": 87.0
+                    },
+                    {
+                        "timestamp": 1785914825000,
+                        "value": 84.0
+                    },
+                    {
+                        "timestamp": 1785914885000,
+                        "value": 87.0
+                    },
+                    {
+                        "timestamp": 1785914945000,
+                        "value": 90.0
+                    },
+                    {
+                        "timestamp": 1785915005000,
+                        "value": 90.0
+                    },
+                    {
+                        "timestamp": 1785915065000,
+                        "value": 90.0
+                    },
+                    {
+                        "timestamp": 1785915125000,
+                        "value": 92.0
+                    },
+                    {
+                        "timestamp": 1785915185000,
+                        "value": 89.0
+                    },
+                    {
+                        "timestamp": 1785915245000,
+                        "value": 93.0
+                    },
+                    {
+                        "timestamp": 1785915305000,
+                        "value": 93.0
+                    },
+                    {
+                        "timestamp": 1785915365000,
+                        "value": 93.0
+                    },
+                    {
+                        "timestamp": 1785915425000,
+                        "value": 93.0
+                    },
+                    {
+                        "timestamp": 1785915485000,
+                        "value": 93.0
+                    }
+                ],
+                "changePercentage": 0.0,
+                "correlationRank": "HIGH"
+            },
+            {
+                "metricName": "Input Packet Count",
+                "timeSeries": [
+                    {
+                        "timestamp": 1785911765000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785911825000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785911885000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785911945000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912005000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912065000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912125000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912185000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912245000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912305000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912365000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912425000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912485000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912545000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912605000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912665000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912725000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912785000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912845000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912905000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785912965000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913025000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913085000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913145000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913205000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913265000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913325000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913385000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913445000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913505000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913565000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913625000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913685000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913745000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913805000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785913865000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785913925000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785913985000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914045000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785914105000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914165000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914225000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785914285000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914345000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914405000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914465000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785914525000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914585000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914645000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914705000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914765000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914825000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914885000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785914945000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785915005000,
+                        "value": 0.0
+                    },
+                    {
+                        "timestamp": 1785915065000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785915125000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785915185000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785915245000,
+                        "value": 1.0
+                    },
+                    {
+                        "timestamp": 1785915305000,
+                        "value": 0.0
+                    }
+                ],
+                "changePercentage": 0.0,
+                "correlationRank": "MEDIUM"
+            }
+        ],
+        "correlationResult": {
+            "status": "SUCCESS",
+            "details": null
+        },
+        "threshold": 80.0,
+        "lastAnalyzedTime": "2026-08-05T07:40:04.933+00:00",
+        "isAnalysisRunning": false
+    },
+    "analysis": {
+        "detail": "Data Plane Memory utilization has reached 59%, exceeding the threshold. High usage can significantly affect network performance, causing packet drops, increased latency, and reduced throughput.",
+        "probableCauses": [
+            {
+                "title": "Deployed ACE Configurations",
+                "detail": "AgenticOps observed a surge in ace configurations, indicated by higher deployed ace configurations, which may have impacted data plane memory",
+                "confidence": null
+            },
+            {
+                "title": "Connections",
+                "detail": "AgenticOps observed a surge in traffic, indicated by higher connections, which may have impacted data plane memory",
+                "confidence": null
+            },
+            {
+                "title": "Input Packet Count",
+                "detail": "AgenticOps observed a surge in traffic, indicated by higher input packet count, which may have impacted data plane memory",
+                "confidence": null
+            }
+        ],
+        "remediation": [
+            {
+                "title": "",
+                "markdownText": "To address high data plane memory usage, identify the root cause (IPS, AMP, VPN, flow monitoring, configuration changes, hardware limitations) and take appropriate action. This may include optimizing IPS and AMP settings, consolidating VPN tunnels, adjusting flow monitoring, reviewing hardware utilization, and enabling performance-tuning tools. Careful analysis and targeted adjustments can improve firewall efficiency and performance."
+            }
+        ]
+    },
+    "type": "MEMORY_LINA_THRESHOLD_BREACH",
+    "state": "RESOLVED"
+}
